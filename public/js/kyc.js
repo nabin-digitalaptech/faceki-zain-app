@@ -138,7 +138,7 @@ function callApi(img_type){
 
         const BASE_URL = "https://app.faceki.com/";
         data = JSON.stringify({
-            client_id:"af7d4790-04a9-11ec-aecf-1dca4d5eaaf0",
+            client_id:"68bc3750-1474-11ec-b791-31084c6a9e50",
             email:"demo@faceki.com",
         })
         fetch(BASE_URL+'getToken', {
@@ -275,17 +275,18 @@ function sendImgeToKyc(front_file,back_file,file_img) {
                 if (resp.result) {
                     debugger
                     if(resp.face.confidence){
+                        localStorage.removeItem("front_img");
+                        localStorage.removeItem("back_img");
+                        localStorage.removeItem("auth_token");
                         localStorage.setItem("score", resp.face.confidence);
+                        localStorage.setItem("response_data", JSON.stringify(resp));
+                        window.location.replace('/kyc-success');
                     }else if(resp.face.error){
                         localStorage.setItem("face-error", 1);
                         localStorage.setItem("face-error-msg", resp.face.error_message);
                         localStorage.setItem("score", 0);
+                        window.location.replace('/kyc-error');
                     }
-                    localStorage.removeItem("front_img");
-                    localStorage.removeItem("back_img");
-                    localStorage.removeItem("auth_token");
-                    localStorage.setItem("response_data", JSON.stringify(resp));
-                    window.location.replace('/kyc-result');
                     return;
                 }
 

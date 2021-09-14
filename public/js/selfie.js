@@ -57,7 +57,7 @@ function callApi(img_type){
 
         const BASE_URL = "https://app.faceki.com/";
         data = JSON.stringify({
-            client_id:"af7d4790-04a9-11ec-aecf-1dca4d5eaaf0",
+            client_id:"68bc3750-1474-11ec-b791-31084c6a9e50",
             email:"demo@faceki.com",
         })
         fetch(BASE_URL+'getToken', {
